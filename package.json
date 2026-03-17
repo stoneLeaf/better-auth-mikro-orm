@@ -74,7 +74,6 @@
     "es-toolkit": "1.39.7",
     "husky": "9.1.7",
     "is-in-ci": "1.0.0",
-    "reflect-metadata": "^0.2.2",
     "tsup": "8.4.0",
     "typescript": "5.8.3",
     "uuid": "11.1.0",

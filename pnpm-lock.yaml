@@ -69,9 +69,6 @@ importers:
       is-in-ci:
         specifier: 1.0.0
         version: 1.0.0
-      reflect-metadata:
-        specifier: ^0.2.2
-        version: 0.2.2
       tsup:
         specifier: 8.4.0
         version: 8.4.0(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.3)
@@ -3525,7 +3522,8 @@ snapshots:
 
   readdirp@4.1.2: {}
 
-  reflect-metadata@0.2.2: {}
+  reflect-metadata@0.2.2:
+    optional: true
 
   regenerator-runtime@0.14.1: {}
 
