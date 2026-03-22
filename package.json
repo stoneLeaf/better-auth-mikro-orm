@@ -52,7 +52,7 @@
     "coverage": "vitest run --coverage",
     "coverage.ui": "vitest --coverage --ui",
     "release": "pnpm build && changeset publish",
-    "prepare": "npx --yes is-in-ci || husky"
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
