@@ -51,14 +51,15 @@ export const mikroOrmAdapter = (
       supportsJSON
     },
 
-    adapter() {
+    adapter(config) {
       const {
         getEntityMetadata,
         getFieldPath,
         normalizeInput,
         normalizeOutput,
-        normalizeWhereClauses
-      } = createAdapterUtils(orm)
+        normalizeWhereClauses,
+        normalizeSelect
+      } = createAdapterUtils(orm, config)
 
       return {
         async create({model, data, select}) {
@@ -68,7 +69,11 @@ export const mikroOrmAdapter = (
 
           await orm.em.persistAndFlush(entity)
 
-          return normalizeOutput(metadata, entity, select) as any
+          return normalizeOutput(
+            metadata,
+            entity,
+            normalizeSelect(model, select)
+          ) as any
         },
 
         async count({model, where}): Promise<number> {
@@ -92,10 +97,16 @@ export const mikroOrmAdapter = (
             return null
           }
 
-          return normalizeOutput(metadata, entity, select) as any
+          const result = normalizeOutput(
+            metadata,
+            entity,
+            normalizeSelect(model, select)
+          ) as any
+
+          return result
         },
 
-        async findMany({model, where, limit, offset, sortBy}) {
+        async findMany({model, where, limit, offset, sortBy, select}) {
           const metadata = getEntityMetadata(model)
 
           const options: FindOptions<any> = {
@@ -114,7 +125,12 @@ export const mikroOrmAdapter = (
             options
           )
 
-          return rows.map(row => normalizeOutput(metadata, row)) as any
+          const normalizedSelect = normalizeSelect(model, select)
+          const result = rows.map(row =>
+            normalizeOutput(metadata, row, normalizedSelect)
+          ) as any
+
+          return result
         },
 
         async update({model, where, update}) {
