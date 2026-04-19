@@ -60,7 +60,7 @@ const {execute} = await testAdapter({
         "findOne - should return null for failed base model lookup that has joins": true,
         "findMany - should return empty array when base records don't exist with joins": true,
 
-        // FIXME: These are skipped for not
+        // FIXME: These are skipped for now
         "create - should return null for nullable foreign keys": true
       }
     })
