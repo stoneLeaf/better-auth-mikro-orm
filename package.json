@@ -54,7 +54,7 @@
     "coverage": "vitest run --coverage",
     "coverage.ui": "vitest --coverage --ui",
     "release": "pnpm build && changeset publish",
-    "prepare": "npx --yes is-in-ci || husky"
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@better-auth/test-utils": "1.6.5",
